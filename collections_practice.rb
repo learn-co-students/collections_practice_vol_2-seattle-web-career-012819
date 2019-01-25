@@ -75,9 +75,34 @@ i = 0
 keys
 end
 
+def find_cool(array)
+cool_person = []
+  array.each do |person|
+        person.each do |attribute, value|
+      if value == "cool"
+        cool_person << person
+      end
+    end
+  end
+cool_person
+end
 
-
-
-def organize_schools(hash)
-
+def organize_schools(school_hash)
+organized_hash = nil
+  school_hash.each do |school_name, location|
+    #binding.pry
+    location.each do |key, city|
+      if organized_hash
+        if organized_hash[city]
+          organized_hash[city] << school_name
+        else
+          organized_hash = organized_hash.merge({city => [school_name]})
+        end
+      else
+        organized_hash = {city => [school_name]}
+      end
+    end
+  end
+organized_hash
+#binding.pry
 end
